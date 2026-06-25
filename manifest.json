@@ -1,0 +1,15 @@
+{
+  "name": "Password Strength Analyzer",
+  "version": "1.0.0",
+  "description": "Analyze password strength and generate secure passwords",
+  "manifest_version": 3,
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Password Strength Analyzer"
+  },
+  "permissions": ["clipboardWrite"],
+  "icons": {
+    "48": "password.png",
+    "128": "password.png"
+  }
+}

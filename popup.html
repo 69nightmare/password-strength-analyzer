@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=360">
+  <title>Password Strength Analyzer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+
+
+  <header class="header">
+    <div class="header-left">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+      </svg>
+      <span class="header-title">Password Strength Analyzer</span>
+    </div>
+    <button class="header-settings" id="settingsBtn" title="Settings">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="3"></circle>
+        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+      </svg>
+    </button>
+  </header>
+
+
+  <div class="settings-panel" id="settingsPanel" style="display:none;">
+    <div class="settings-row">
+      <span class="settings-text">Auto-copy on generate</span>
+      <label class="toggle-switch">
+        <input type="checkbox" id="settingAutoCopy">
+        <span class="toggle-track"></span>
+      </label>
+    </div>
+    <div class="settings-row">
+      <span class="settings-text">Show crack time estimate</span>
+      <label class="toggle-switch">
+        <input type="checkbox" id="settingShowCrack" checked>
+        <span class="toggle-track"></span>
+      </label>
+    </div>
+    <div class="settings-row">
+      <span class="settings-text">Min length requirement</span>
+      <select class="settings-select" id="settingMinLength">
+        <option value="6">6</option>
+        <option value="8" selected>8</option>
+        <option value="10">10</option>
+        <option value="12">12</option>
+        <option value="16">16</option>
+      </select>
+    </div>
+    <div class="settings-row settings-version">
+      <span class="settings-text settings-muted">Password Strength Analyzer v1.0.0</span>
+    </div>
+  </div>
+
+
+  <section class="section section-input">
+    <div class="label">Password</div>
+    <div class="input-wrapper">
+      <input
+        type="password"
+        id="passwordInput"
+        class="password-input"
+        placeholder="Enter or paste a password"
+        autocomplete="off"
+        spellcheck="false"
+      >
+      <button class="toggle-visibility" id="toggleVisibility" title="Toggle visibility">
+
+        <svg id="eyeIcon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+          <circle cx="12" cy="12" r="3"></circle>
+        </svg>
+
+        <svg id="eyeOffIcon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+          <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"></path>
+          <path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"></path>
+          <path d="M14.12 14.12a3 3 0 1 1-4.24-4.24"></path>
+          <line x1="1" y1="1" x2="23" y2="23"></line>
+        </svg>
+      </button>
+    </div>
+  </section>
+
+
+  <section class="section section-strength" id="strengthSection" style="display:none;">
+    <div class="strength-header">
+      <span class="label" style="margin-bottom:0;">Strength</span>
+      <span class="strength-name" id="strengthName">—</span>
+    </div>
+    <div class="strength-bar" id="strengthBar">
+      <div class="strength-segment" data-index="0"></div>
+      <div class="strength-segment" data-index="1"></div>
+      <div class="strength-segment" data-index="2"></div>
+      <div class="strength-segment" data-index="3"></div>
+      <div class="strength-segment" data-index="4"></div>
+    </div>
+    <button class="strengthen-btn" id="strengthenBtn" style="display:none;">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+      Strengthen Password
+    </button>
+  </section>
+
+
+  <section class="section section-crack" id="crackSection" style="display:none;">
+    <div class="crack-row">
+      <span class="label" style="margin-bottom:0;">Time to Crack</span>
+      <div class="crack-value">
+        <div class="crack-time" id="crackTime">—</div>
+        <div class="crack-rate">at 10 guesses / sec (online)</div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="section section-requirements" id="requirementsSection" style="display:none;">
+    <div class="label">Requirements</div>
+    <div class="requirements-list" id="requirementsList">
+      <div class="req-row" data-req="length">
+        <span class="req-icon" id="reqIconLength"></span>
+        <span class="req-text">At least 8 characters</span>
+      </div>
+      <div class="req-row" data-req="uppercase">
+        <span class="req-icon" id="reqIconUppercase"></span>
+        <span class="req-text">Uppercase letter (A–Z)</span>
+      </div>
+      <div class="req-row" data-req="lowercase">
+        <span class="req-icon" id="reqIconLowercase"></span>
+        <span class="req-text">Lowercase letter (a–z)</span>
+      </div>
+      <div class="req-row" data-req="number">
+        <span class="req-icon" id="reqIconNumber"></span>
+        <span class="req-text">Number (0–9)</span>
+      </div>
+      <div class="req-row" data-req="special">
+        <span class="req-icon" id="reqIconSpecial"></span>
+        <span class="req-text">Special character (!@#$%...)</span>
+      </div>
+      <div class="req-row" data-req="common">
+        <span class="req-icon" id="reqIconCommon"></span>
+        <span class="req-text">No common patterns</span>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="section section-generator">
+    <div class="label">Generate Password</div>
+
+    <div class="length-row">
+      <span class="length-label">Length</span>
+      <span class="length-value" id="lengthValue">16</span>
+    </div>
+    <input
+      type="range"
+      id="lengthSlider"
+      class="length-slider"
+      min="12"
+      max="32"
+      step="1"
+      value="16"
+    >
+
+    <div class="checkbox-row">
+      <label class="checkbox-label">
+        <input type="checkbox" id="chkSymbols" checked>
+        <span>Symbols</span>
+      </label>
+      <label class="checkbox-label">
+        <input type="checkbox" id="chkUppercase" checked>
+        <span>Uppercase</span>
+      </label>
+      <label class="checkbox-label">
+        <input type="checkbox" id="chkNumbers" checked>
+        <span>Numbers</span>
+      </label>
+    </div>
+
+    <div class="generated-row" id="generatedRow" style="display:none;">
+      <span class="generated-password" id="generatedPassword"></span>
+      <button class="copy-btn" id="copyBtn" title="Copy to clipboard">
+
+        <svg id="copyIcon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+        </svg>
+
+        <svg id="checkIcon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+      </button>
+    </div>
+
+    <button class="generate-btn" id="generateBtn">Generate Password</button>
+  </section>
+
+  <script src="rockyou_top.js"></script>
+  <script src="zxcvbn.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>
