@@ -1,43 +1,46 @@
 # Password Strength Analyzer
 
-A Chrome extension that helps you analyze password strength, estimate crack times, get actionable security feedback, and generate secure passwords.
+**GitHub Repository:** [https://github.com/L0ner69/password-strength-analyzer](https://github.com/L0ner69/password-strength-analyzer)
 
-## Features
+## Detailed Explanation of the Output
 
-- **Password Strength Analysis**: Uses the `zxcvbn` library to provide realistic password strength estimations in real-time as you type.
-- **Crack Time Estimation**: Displays an estimated time it would take an attacker to guess or crack your password.
-- **Vulnerability Checks**: Checks your password against the Top 1000 RockYou common passwords dataset to instantly flag compromised passwords.
-- **Real-time Requirements Feedback**: Visual indicators to ensure your password meets standard security requirements (length, uppercase, lowercase, numbers, special characters, and not common).
-- **Password Strengthener**: A one-click tool that takes a weak password and applies smart transformations (leetspeak, appending random characters) to instantly make it stronger.
-- **Secure Password Generator**: Generate completely random, strong passwords with customizable length and character sets (uppercase, numbers, symbols).
-- **Settings**: Customizable minimum password length, toggleable crack time visibility, and an option to automatically copy generated passwords to the clipboard.
+The **Password Strength Analyzer** is a Chrome Extension designed to provide real-time, actionable feedback on password security. When interacting with the extension, the output consists of the following components:
 
-## Installation
+1. **Strength Indicator**: Uses the `zxcvbn` algorithm to realistically estimate password entropy. It visually displays the strength using a color-coded 5-segment bar (Very Weak to Very Strong).
+2. **Crack Time Estimation**: Displays the estimated time required for an attacker to brute-force the password at a rate of 10 guesses per second (ranging from "Instantly" to "Centuries+").
+3. **Vulnerability Assessment**: Cross-references the input against the top 1,000 RockYou dataset passwords to instantly flag critically compromised, commonly used passwords.
+4. **Requirements Checklist**: A dynamic checklist that updates in real-time to ensure the password meets standard security criteria (length, uppercase, lowercase, numbers, and special characters).
+5. **Secure Password Generation**: A built-in tool that outputs cryptographically secure, randomized passwords based on user-defined constraints (length, symbols, numbers), with a one-click copy feature.
 
-1. Clone or download this repository to your local machine.
-2. Open Google Chrome and navigate to `chrome://extensions/`.
-3. Enable **Developer mode** by toggling the switch in the top right corner.
-4. Click on the **Load unpacked** button.
-5. Select the directory containing the extension files (`d:\amity\3rd sem\NTCC\pass`).
+---
 
-## Usage
+## Steps to Follow
 
-1. Click on the extension icon in your Chrome toolbar.
-2. **To analyze a password**: Start typing in the password field. The strength meter, requirements, and crack time will update automatically. If the password is weak, you can click the "Strengthen" button (magic wand icon) to automatically improve it.
-3. **To generate a password**: Use the sliders and checkboxes at the bottom to configure your desired password complexity, then click "Generate".
-4. **Settings**: Click the gear icon in the top right to access extension settings.
+### 1. Install Required Platform
+Since this project is a Chrome Extension, the required platform is the **Google Chrome web browser** (or any Chromium-based browser like Microsoft Edge or Brave).
+- Download and install Google Chrome from [google.com/chrome](https://www.google.com/chrome/).
 
-## File Structure
+### 2. Import Required Libraries
+This extension is built using vanilla HTML, CSS, and JavaScript. It does not require a complex Node.js build process or package managers like npm. The required libraries are included directly in the source code folder:
+- **`zxcvbn.js`**: Dropbox's realistic password strength estimator library.
+- **`rockyou_top.js`**: A dataset containing top common passwords used for vulnerability checking.
 
-- `manifest.json`: The configuration file for the Chrome extension.
-- `popup.html`: The HTML structure of the extension's popup interface.
-- `popup.css`: The styling for the popup interface.
-- `popup.js`: The core logic for strength analysis, password generation, and UI interactions.
-- `zxcvbn.js`: Dropbox's realistic password strength estimator library.
-- `rockyou_top.js`: A dataset containing top common passwords used for vulnerability checking.
-- `icon.png` & `password.png`: Extension icons.
+You do not need to manually import or install these; they are already linked in the `popup.html` file via standard `<script>` tags.
 
-## Technologies Used
+### 3. Check Manual Commands
+To load the extension into your browser, follow these manual configuration steps:
+1. Open Google Chrome.
+2. Type `chrome://extensions/` into the URL address bar and press **Enter**.
+3. In the top-right corner of the Extensions page, toggle the switch to turn on **Developer mode**.
+4. A new menu bar will appear at the top left. Click the button labeled **Load unpacked**.
+5. A file picker dialog will open. Navigate to the directory containing your extracted source code files and click **Select Folder**.
+6. The extension will now be loaded and should appear in your Chrome extensions list.
 
-- HTML5, CSS3, JavaScript
-- [zxcvbn](https://github.com/dropbox/zxcvbn) for password strength estimation.
+### 4. Execute
+To run and test the output of the project:
+1. Click the **Puzzle piece icon** (Extensions) in the top right of your Chrome toolbar.
+2. Click on the **Password Strength Analyzer** extension to open the popup interface.
+3. **Analyze**: Start typing a test password into the input field. Observe how the strength bar, crack time estimate, and requirements checklist update in real-time. Try typing a common password like `password123` to see the vulnerability warning.
+4. **Strengthen**: If a password is weak, click the "Strengthen Password" button that appears to automatically inject entropy into your base password.
+5. **Generate**: Scroll down to the generator section, adjust the length slider, select your character preferences, and click **Generate Password**. Use the copy button to copy the output to your clipboard.
+6. **Settings**: Click the gear icon in the top right to customize minimum length requirements and UI preferences.
