@@ -1,15 +1,6 @@
-/**
- * RockYou Top Passwords Dataset
- * 
- * Contains the most common passwords from the 2009 RockYou data breach.
- * The original dataset had ~32 million passwords; this is the curated top set
- * covering the most frequently used passwords by real users.
- * 
- * Used for instant "Very Weak" classification — if a password appears here,
- * it can be cracked in seconds by any attacker with a standard wordlist.
- */
+
 const ROCKYOU_SET = new Set([
-  // === Top 100 (covers ~5% of all RockYou accounts) ===
+
   "123456","12345","123456789","password","iloveyou","princess","1234567",
   "rockyou","12345678","abc123","nicole","daniel","babygirl","monkey",
   "lovely","jessica","654321","michael","ashley","qwerty","111111",
@@ -26,7 +17,7 @@ const ROCKYOU_SET = new Set([
   "joseph","junior","softball","taylor","yellow","daniela","princess1",
   "nature","starwars","freaky","sexy","love","cheese","brianna",
 
-  // === Top 101–500 ===
+
   "hailey","babygirl1","lollipop","batman","spring","alexis","nicole1",
   "faith","cheese1","jesus","runner","robert1","peanut","money",
   "pepper","starwars1","muffin","gateway","bailey","snowflake","chicken",
@@ -70,7 +61,7 @@ const ROCKYOU_SET = new Set([
   "cowboys","purple2","kitty","poohbear","danielle1","smooth",
   "college","adrian","amanda1","cookies","bananas","starwars3",
 
-  // === Top 501–1000 ===
+
   "music","skittles","shorty","sophie","jessica2","dancer2","volleyball",
   "sabrina","remember","mookie","falcon","cheyenne","abcdefgh","lovebug1",
   "wisdom","golden","alyssa","flower2","jasmine2","iloveu1","strawberry1",
@@ -107,7 +98,7 @@ const ROCKYOU_SET = new Set([
   "ladybug1","dolphins3","knights","warriors","marvel","titans",
   "baller","broncos1","booger1","spider","captain","dolphins4",
 
-  // === Top 1001–2000 (popular patterns & variations) ===
+
   "welcome","letmein","trustme","access","master1","shadow1","login",
   "passw0rd","admin","root","guest","default","test","test123",
   "temp","changeme","pass1234","temp123","welcome1","admin123",
@@ -170,7 +161,7 @@ const ROCKYOU_SET = new Set([
   "spell","wand","potion","elixir","alchemy","sorcery","enchant",
   "mystic","psychic","oracle2","prophet","sage","monk","priest",
 
-  // === Top 2001–3000 (keyboard patterns, dates, names) ===
+
   "qwerty1234","1q2w3e4r5t","zxcvbn","asdfghjkl1","qwertyuiop",
   "1qaz2wsx3edc","zaq12wsx","1qazxsw2","qazwsxedc","poiuytrewq",
   "asdfjkl","zxcvbnm1","mnbvcxz","qpalzm","1234abcd","abcd1234",
@@ -206,7 +197,7 @@ const ROCKYOU_SET = new Set([
   "denise","tammy","irene","jane","lori","norma","tiffany",
   "janice","marilyn","judy","theresa","rosa","phyllis","lillian",
 
-  // === Top 3001–4000 (common words, phrases, slang) ===
+
   "iloveyou2","ihateyou","ilovehim","iloveher","loveyou2",
   "missyou","missu","babe","baby","babyboo","babylove","babyboy1",
   "babydoll","babyface","babygirl3","princess3","prince2","angel4",
@@ -245,7 +236,7 @@ const ROCKYOU_SET = new Set([
   "jump","leap","bound","sprint","race","chase","hunt",
   "seek","find","search","discover","explore","venture",
 
-  // === Top 4001–5000 (pop culture, brands, tech) ===
+
   "google","yahoo","facebook","twitter","instagram","snapchat",
   "tiktok","youtube","netflix","spotify","amazon","apple",
   "microsoft","windows","linux","android","iphone","ipad",
@@ -278,7 +269,7 @@ const ROCKYOU_SET = new Set([
   "infinity","gauntlet","tesseract","chitauri","ultron","jarvis",
   "friday1","edith","karen1","pepper2","happy1","rhodey","wong",
 
-  // === Top 5001–6000 (numeric patterns, dates) ===
+
   "010101","020202","030303","040404","050505","060606",
   "070707","080808","090909","101010","111111","121221",
   "010203","020304","030405","040506","050607","060708",
@@ -313,7 +304,7 @@ const ROCKYOU_SET = new Set([
   "qqqq","rrrr","ssss","tttt","uuuu","vvvv","wwww","xxxx",
   "yyyy","zzzz","aabbcc","xxyyzz","aabb","xxyy","aabb11",
 
-  // === Top 6001–7000 (sports teams, cities, countries) ===
+
   "barcelona","realmadrid","manchester","chelsea2","arsenal1",
   "tottenham","bayern","dortmund","psg","acmilan","intermilan",
   "napoli","roma","lazio","benfica","porto","ajax","feyenoord",
@@ -352,7 +343,7 @@ const ROCKYOU_SET = new Set([
   "sweden","norway","denmark","finland","poland","russia",
   "ukraine","turkey","egypt","india","china","japan","korea",
 
-  // === Top 7001–8000 (food, animals, nature extended) ===
+
   "pizza","burger","hotdog2","sandwich","taco","burrito","sushi",
   "ramen","pasta","noodle","rice","bread","toast","pancake",
   "waffle1","donut","bagel","pretzel","croissant","muffin1",
@@ -386,7 +377,7 @@ const ROCKYOU_SET = new Set([
   "fox","coyote","jackal","hyena","meerkat","mongoose","panda",
   "koala","kangaroo","platypus","echidna","wombat","tasmanian",
 
-  // === Top 8001–9000 (music, movies, TV) ===
+
   "metallica","acdc","gunsnroses","nirvana2","pearljam","soundgarden",
   "aliceinchains","linkinpark","greenday1","blink1821","falloutboy",
   "paramore","myday","chemical","romance","panic","disco",
@@ -430,7 +421,7 @@ const ROCKYOU_SET = new Set([
   "hopper","joyce","nancy1","steve","robin2","billy1","max1",
   "upsidedown","demogorgon","mindflayer","vecna","hawkins",
 
-  // === Top 9001–10000 (misc common, l33tspeak, final batch) ===
+
   "nopassword","letmein1","opensesame","open","sesame","enter",
   "knock","door","key","lock","safe","secure","protect",
   "shield","armor","sword","blade","dagger","axe","bow",
