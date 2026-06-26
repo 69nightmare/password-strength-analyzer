@@ -1,6 +1,6 @@
 # Password Strength Analyzer
 
-**GitHub Repository:** [https://github.com/L0ner69/password-strength-analyzer](https://github.com/L0ner69/password-strength-analyzer)
+**GitHub Repository:** [https://github.com/69nightmare/password-strength-analyzer](https://github.com/69nightmare/password-strength-analyzer)
 
 ## Detailed Explanation of the Output
 
